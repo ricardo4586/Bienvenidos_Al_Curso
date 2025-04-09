@@ -40,7 +40,15 @@ android {
 }
 
 dependencies {
+    // Dependencias de Compose
+    implementation("androidx.compose.ui:ui:1.1.0")  // UI de Compose
+    implementation("androidx.compose.foundation:foundation:1.1.0")  // Necesaria para los modificadores como `clip`
+    implementation("androidx.compose.material3:material3:1.0.0")  // Material3
+    implementation("androidx.compose.ui:ui-tooling-preview:1.1.0")  // Herramientas de previsualización
+    implementation("androidx.activity:activity-compose:1.3.1")  // Actividad para Compose
+    implementation("androidx.compose.runtime:runtime:1.1.0")  // Para el runtime de Compose
 
+    // Dependencias adicionales
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -57,3 +65,4 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+

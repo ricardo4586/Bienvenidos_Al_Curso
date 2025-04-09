@@ -1,7 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:orientation="vertical"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="#D9E9D3">
+
+    <!-- Imagen de Android -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/rene" /> <!-- Usando la imagen rene.webp -->
+
+    <!-- Nombre del desarrollador -->
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jennifer Doe"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#3E3E3E"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Cargo del desarrollador -->
+    <TextView
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Developer Extraordinaire"
+        android:textSize="18sp"
+        android:textColor="#4CAF50"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Teléfono -->
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="📞 +11 (123) 444 555 666"
+        android:textSize="16sp"
+        android:textColor="#3E3E3E" />
+
+    <!-- Redes sociales -->
+    <TextView
+        android:id="@+id/social"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="📱 @AndroidDev"
+        android:textSize="16sp"
+        android:textColor="#3E3E3E"
+        android:layout_marginTop="8dp" />
+
+    <!-- Correo electrónico -->
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="✉ jen.doe@android.com"
+        android:textSize="16sp"
+        android:textColor="#3E3E3E"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

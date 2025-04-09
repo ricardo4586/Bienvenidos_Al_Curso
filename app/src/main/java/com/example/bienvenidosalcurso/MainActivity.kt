@@ -3,47 +3,39 @@ package com.example.bienvenidosalcurso
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer  // Necesario para usar efectos gráficos
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.res.painterResource
-import androidx.core.view.WindowCompat
-import com.example.bienvenidosalcurso.ui.theme.BienvenidosAlCursoTheme
-
-// Importar Image y painterResource para la carga de imágenes
-import androidx.compose.foundation.Image
-// Importar Arrangement para la distribución de los elementos
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.foundation.background
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Habilitar el borde a borde en la aplicación
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
-            BienvenidosAlCursoTheme {
-                Column(modifier = Modifier.fillMaxSize()) {
-                    GreetingCard(modifier = Modifier.padding(16.dp))
+            MaterialTheme {
+                // Aplicamos el color de fondo a la columna
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color(0xFFD9E9D3)) // Verde claro de fondo
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    ProfileCard()
                 }
             }
         }
@@ -51,77 +43,90 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingCard(modifier: Modifier = Modifier) {
-    // Especificamos el tipo explícito de mutableStateOf<String>()
-    val name = remember { mutableStateOf("") }
-
+fun ProfileCard() {
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center // Usamos Arrangement para distribuir el contenido verticalmente
+            .padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "¡Bienvenido al Curso!",
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = "¡Hola, Estudiante!",
-            fontSize = 20.sp
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Fila con los botones "Aceptar" y "Rechazar"
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround // Distribuye los botones horizontalmente
+        // Imagen circular usando graphicsLayer
+        Box(
+            modifier = Modifier
+                .size(120.dp)
+                .padding(bottom = 16.dp)
+                .aspectRatio(1f)  // Mantener el aspecto cuadrado
+                .background(Color.Gray, CircleShape) // Fondo circular
         ) {
-            Button(
-                onClick = { /* Acción de aceptar */ },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6200EE),  // Color morado de fondo
-                    contentColor = Color.White            // Texto blanco
-                )
-            ) {
-                Text(
-                    text = "Aceptar",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-            Button(
-                onClick = { /* Acción de rechazar */ },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Red,  // Color rojo de fondo
-                    contentColor = Color.White   // Texto blanco
-                )
-            ) {
-                Text(
-                    text = "Rechazar",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Image(
+                painter = painterResource(id = R.drawable.rene),  // Asegúrate de tener la imagen en recursos
+                contentDescription = "Profile Image",
+                modifier = Modifier
+                    .fillMaxSize()  // Hace que la imagen llene el Box
+                    .graphicsLayer {
+                        shape = CircleShape // Aplica el recorte circular
+                        clip = true
+                    }
+            )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        // Nombre
+        Text(
+            text = "Jennifer Doe",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
 
-        // Imagen decorativa
-        Image(
-            painter = painterResource(id = R.drawable.rene),  // Usa la imagen rene.webp
-            contentDescription = "Imagen del curso",
-            modifier = Modifier.size(100.dp)
+        // Cargo
+        Text(
+            text = "Android Developer Extraordinaire",
+            fontSize = 18.sp,
+            color = Color.Gray,
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
+
+        // Información de contacto
+        ContactInfo()
+    }
+}
+
+@Composable
+fun ContactInfo() {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Teléfono
+        Text(
+            text = "📞 +11 (123) 444 555 666",
+            fontSize = 16.sp,
+            color = Color.Black,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+
+        // Redes sociales
+        Text(
+            text = "📱 @AndroidDev",
+            fontSize = 16.sp,
+            color = Color.Black,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+
+        // Correo
+        Text(
+            text = "✉ jen.doe@android.com",
+            fontSize = 16.sp,
+            color = Color.Black
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewGreetingCard() {
-    BienvenidosAlCursoTheme {
-        GreetingCard()
+fun PreviewProfileCard() {
+    MaterialTheme {
+        ProfileCard()
     }
 }
